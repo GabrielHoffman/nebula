@@ -88,7 +88,7 @@ nebula = function (count, id, pred = NULL, offset = NULL,min = c(1e-4,1e-4), max
     sds = pred$sds
     if((sum(sds==0)>1)|(sum(sds<0)>0))
     {stop("Some predictors have zero variation or a zero vector.")}
-    if(sum(sds==0)==0)
+    if(sum(abs(sds) < 1e-15)==0)
     {stop("The design matrix must include an intercept term.")}
     intcol = which(sds==0)
     pred = as.matrix(pred$pred)
